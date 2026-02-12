@@ -11,3 +11,9 @@ wheels/
 
 # Environment variables
 .env
+
+# unnecessary logs
+logs/
+*.log
+
+# Testing notebooks
