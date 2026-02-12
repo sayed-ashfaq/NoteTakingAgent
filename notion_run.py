@@ -1,4 +1,4 @@
-from notion_main.notion_client import NotionClient
+from notion_main.client import NotionClient
 from utils.data_parsing import markdown_to_notion_blocks
 from datetime import datetime
 
