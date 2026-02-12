@@ -1,7 +1,10 @@
 import requests
 import os
 from dotenv import load_dotenv
+import datetime
+from utils.data_parsing import parse_data
 load_dotenv()
+
 
 # ==============================
 # CONFIG (Fill these)
@@ -9,6 +12,7 @@ load_dotenv()
 
 NOTION_TOKEN = os.getenv("NOTION_API_KEY")
 DATABASE_ID = os.getenv("NOTION_PAGE_ID")
+current_date = datetime.datetime.now().strftime("%Y-%m-%d")
 
 # ==============================
 # HEADERS (Required)
@@ -23,8 +27,7 @@ headers = {
 # ==============================
 # DATA: Create a new Page
 # ==============================
-from utils.docsIO import load_data
-content = load_data()
+children = parse_data("data//test_data.md")
 
 payload = {
     "parent": {"database_id": DATABASE_ID},
@@ -39,24 +42,17 @@ payload = {
                 { "name": "Tag1" },
                 { "name": "Tag2" }
             ]
-        }
-    },
-    'children': [
-        {
-            'object': 'block',
-            'type': 'paragraph',
-            'paragraph': {
-                'rich_text': [
-                    {
-                        'type': 'text',
-                        'text': {
-                            'content': content[:200],
-                        }
-                    }
-                ]
+        },
+        "Date": {
+            "date": {
+                "start": current_date
             }
-        }
-    ]
+        },
+        "Status": {
+            "select": {"name": "In Progress"}
+        },
+    },
+    'children': children    
 }
 
 # ==============================
@@ -77,7 +73,6 @@ print("Status Code:", response.status_code)
 
 if response.status_code == 200:
     print("✅ Page created successfully!")
-    print(content[:200])
 else:
     print("❌ Error:")
     print(response.json())
