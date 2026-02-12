@@ -11,6 +11,10 @@
 # > for quote
 
 
+# =========================
+# HELPER BLOCKS
+# =========================
+
 def rich(text):
     return [{"type": "text", "text": {"content": text}}]
 

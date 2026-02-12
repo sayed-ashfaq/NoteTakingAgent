@@ -1,12 +1,13 @@
 import requests
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
 
 class NotionClient:
     def __init__(self):
-        self.token = os.getenv("NOTION_TOKEN")
-        self.database_id = os.getenv("DATABASE_ID")
+        self.token = os.getenv("NOTION_API_KEY")
+        self.database_id = os.getenv("NOTION_PAGE_ID")
         self.url = "https://api.notion.com/v1/"
 
         self.headers = {
@@ -15,37 +16,15 @@ class NotionClient:
             "Content-Type": "application/json",
         }
 
-    def add_note(self, title: str, note_type: str, content: str):
+    def add_note(self, properties: dict, children: list):
         """
         note_type must be one of: Idea, Task, Note
         """
 
         payload = {
             "parent": {"database_id": self.database_id},
-            "properties": {
-                "Name": {
-                    "title": [{"text": {"content": title}}]
-                },
-                "Type": {
-                    "select": {"name": note_type}
-                }
-            },
-            'children': [
-                {
-                    'object': 'block',
-                    'type': 'paragraph',
-                    'paragraph': {
-                        'rich_text': [
-                            {
-                                'type': 'text',
-                                'text': {
-                                    'content': content[:200],
-                                }
-                            }
-                        ]
-                    }
-                }
-            ]
+            "properties": properties,
+            "children": children
         }
 
         response = requests.post(
