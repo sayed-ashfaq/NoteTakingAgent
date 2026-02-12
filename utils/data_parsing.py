@@ -3,10 +3,43 @@
 ## we can do this by reading each line and based on prefix we can assign it to a category.
 
 # for example:
-## Heading 1, content
-### Subheading 1, content
-### Subheading 2, content
-## Heading 2, content
+# # Heading 1
+# ## Heading 2
+# ``` some code` -> Code bloc
+# - or * for bullet point
+# 1. for numbered list
+# > for quote
+
+
+def rich(text):
+    return [{"type": "text", "text": {"content": text}}]
+
+
+def block(type_, text):
+    return {
+        "object": "block",
+        "type": type_,
+        type_: {"rich_text": rich(text)}
+    }
+
+
+def code_block(code, language="plain text"):
+    return {
+        "object": "block",
+        "type": "code",
+        "code": {
+            "language": language,
+            "rich_text": rich(code)
+        }
+    }
+
+def divider():
+    return {
+        "object": "block",
+        "type": "divider",
+        "divider": {}
+    }
+
 
 def text_block(type, text):
     return {
@@ -16,73 +49,89 @@ def text_block(type, text):
             "rich_text":[{"type":"text","text":{"content":text}}]
         }
     }
-
-
-
 # =========================
 # PARSING
 # =========================
-def parse_data(path):
+
+
+import re
+
+def markdown_to_notion_blocks(path):
+
     children = []
-    in_code_block = False
-    code_buffer = []
+
+    in_code = False
+    code_lines = []
+    code_lang = "plain text"
 
     with open(path, "r", encoding="utf-8") as f:
-        for raw_line in f:
-            line = raw_line.rstrip("\n")
+        for raw in f:
+            line = raw.rstrip()
 
-            # =========================
-            # CODE BLOCK START / END
-            # =========================
+            # =====================
+            # CODE BLOCK TOGGLE
+            # =====================
             if line.startswith("```"):
-                if not in_code_block:
-                    in_code_block = True
-                    code_buffer = []
+                if not in_code:
+                    in_code = True
+                    code_lang = line.replace("```", "").strip() or "plain text"
+                    code_lines = []
                 else:
-                    # closing ```
-                    children.append({
-                        "object": "block",
-                        "type": "code",
-                        "code": {
-                            "language": "plain text",
-                            "rich_text": [
-                                {
-                                    "type": "text",
-                                    "text": {
-                                        "content": "\n".join(code_buffer)
-                                    }
-                                }
-                            ]
-                        }
-                    })
-                    in_code_block = False
+                    children.append(code_block("\n".join(code_lines), code_lang))
+                    in_code = False
                 continue
 
-            if in_code_block:
-                code_buffer.append(line)
+            if in_code:
+                code_lines.append(line)
                 continue
 
-            # =========================
-            # HEADINGS (ORDER MATTERS)
-            # =========================
+            # =====================
+            # HEADINGS
+            # =====================
             if line.startswith("### "):
-                children.append(text_block("heading_3", line[4:]))
+                children.append(block("heading_3", line[4:]))
+                continue
 
-            elif line.startswith("## "):
-                children.append(text_block("heading_2", line[3:]))
+            if line.startswith("## "):
+                children.append(block("heading_2", line[3:]))
+                continue
 
-            elif line.startswith("# "):
-                children.append(text_block("heading_1", line[2:]))
+            if line.startswith("# "):
+                children.append(block("heading_1", line[2:]))
+                continue
 
-            # =========================
-            # NORMAL TEXT
-            # =========================
-            elif line.strip():
-                children.append(text_block("paragraph", line.strip()))
+            # =====================
+            # BULLET LIST
+            # =====================
+            if line.startswith("- ") or line.startswith("*"):
+                children.append(block("bulleted_list_item", line[2:]))
+                continue
+
+            # =====================
+            # NUMBERED LIST
+            # =====================
+            if re.match(r"\d+\.\s", line):
+                text = re.sub(r"^\d+\.\s", "", line)
+                children.append(block("numbered_list_item", text))
+                continue
+
+            # =====================
+            # QUOTE
+            # =====================
+            if line.startswith("> "):
+                children.append(block("quote", line[2:]))
+                continue
+
+            if line.strip() == "---":
+                children.append(divider())
+                continue
+
+            # =====================
+            # PARAGRAPH
+            # =====================
+            if line.strip():
+                children.append(block("paragraph", line.strip()))
 
     return children
 
 
-if __name__ == "__main__":
-    children = parse_data("data//test_data.md")
-    print(children)

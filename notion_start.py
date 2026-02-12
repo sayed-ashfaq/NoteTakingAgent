@@ -2,7 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 import datetime
-from utils.data_parsing import parse_data
+from utils.data_parsing import markdown_to_notion_blocks
 load_dotenv()
 
 
@@ -27,14 +27,15 @@ headers = {
 # ==============================
 # DATA: Create a new Page
 # ==============================
-children = parse_data("data//test_data.md")
+# children = parse_data("data//test_data.md")
+children = markdown_to_notion_blocks("data//test_data2.md")
 
 payload = {
     "parent": {"database_id": DATABASE_ID},
     "properties": {
         "Name": {
             "title": [
-                {"text": {"content": "My first note from Python"}}
+                {"text": {"content": "Testing Notion API 2"}}
             ]
         },
         "Tags": {
