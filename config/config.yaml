@@ -1,0 +1,33 @@
+app:
+  name: notion-voice-agent
+  environment: dev
+
+
+llm:
+
+  reasoning:
+    # deep thinking model
+    provider: "google"
+    model_name: "gemini-3-pro"
+    temperature: 0.1
+    max_output_tokens: 4096
+
+  orchestration:
+    # stable agent brain
+    provider: "openai"
+    model_name: "gpt-5"
+    temperature: 0.2
+    max_output_tokens: 2048
+
+  simple:
+    # fast chat + formatting
+    provider: "google"
+    model_name: "gemini-3-flash"
+    temperature: 0.3
+    max_output_tokens: 1024
+
+
+voice:
+  stt_provider: whisper
+  tts_provider: elevenlabs
+  language: en
