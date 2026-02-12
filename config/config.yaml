@@ -22,7 +22,7 @@ llm:
   simple:
     # fast chat + formatting
     provider: "google_genai"
-    model_name: "gemini-3-flash"
+    model_name: "gemini-3-flash-preview"
     temperature: 0.3
     max_output_tokens: 1024
 
