@@ -10,6 +10,8 @@ from dotenv import load_dotenv
 from agent import NoteAgent
 from notion_client import NotionClient
 from utils.data_parsing import markdown_to_notion_blocks
+from streamlit_mic_recorder import mic_recorder
+from utils.voice_module import transcribe
 
 # Load environment variables
 load_dotenv()
@@ -18,7 +20,7 @@ sys.path.append(os.getcwd())
 
 # Page config
 st.set_page_config(
-    page_title="🤖 Smart Note Taker",
+    page_title="Smart Note Taker",
     page_icon="🤖",
     layout="centered"
 )
@@ -61,6 +63,40 @@ with st.sidebar:
         st.write(f"✅ Notion DB: {'✓' if os.getenv('NOTION_PAGE_ID') else '✗'}")
         st.write(f"✅ Google API: {'✓' if os.getenv('GOOGLE_API_KEY') else '✗'}")
     
+    st.divider()
+    
+    # VOICE INPUT SECTION
+    st.markdown("### 🎙️ Voice Input")
+    
+    # 1. Mic Recorder
+    st.write("Click to record:")
+    audio = mic_recorder(
+        start_prompt="🎤 Start Recording",
+        stop_prompt="⏹️ Stop Recording",
+        key='recorder'
+    )
+    
+    # 2. File Upload
+    uploaded_audio = st.file_uploader("Or upload audio", type=['wav', 'mp3', 'm4a'])
+    
+    # Process Audio
+    if audio or uploaded_audio:
+        with st.spinner("🎧 Transcribing audio..."):
+            try:
+                if audio:
+                    audio_bytes = audio['bytes']
+                else:
+                    audio_bytes = uploaded_audio.read()
+                
+                # Transcribe
+                transcribed_text = transcribe(audio_bytes)
+                if transcribed_text:
+                    st.session_state.main_input = transcribed_text
+                    st.success("✅ Transcription complete!")
+                
+            except Exception as e:
+                st.error(f"Transcription failed: {str(e)}")
+
     st.divider()
     
     st.markdown("""
@@ -115,10 +151,15 @@ if 'agent' not in st.session_state:
 # ==========================================
 st.markdown("### 📝 Enter your thought, note, or task")
 
+# Initialize session state for input
+if 'main_input' not in st.session_state:
+    st.session_state.main_input = ""
+
 input_text = st.text_area(
     label="Input",
+    key="main_input",
     height=150,
-    placeholder="Example: Remind me to buy groceries tomorrow. List: Milk, Eggs, Bread.",
+    placeholder="Type here or use voice recording from sidebar...",
     label_visibility="collapsed"
 )
 
@@ -129,6 +170,7 @@ with col2:
     clear_btn = st.button("🗑️ Clear", use_container_width=True)
 
 if clear_btn:
+    st.session_state.main_input = ""
     st.rerun()
 
 # ==========================================
