@@ -86,7 +86,14 @@ Your Tasks:
        - "This Friday" -> 2026-02-20
        - "Next Friday" -> 2026-02-27
    - Default: If no date specified, use Today's date.
-4. Format content as Markdown.
+4. **FORMAT CONTENT (Crucial):**
+   - **IF TASK:** 
+     - Format as a CHECKLIST: Start with `- [ ]`.
+     - **REMOVE time words:** Strip "tomorrow", "next Friday", "today" from the content. The date is already in the target_date field.
+     - Make it action-oriented (starts with Verb).
+     - Example Input: "Tomorrow I need to update HR manager"
+     - Example Output: "- [ ] Update HR manager that friend is going to be interviewed"
+   - **IF NOTE/IDEA:** Standard Markdown.
 5. Extract tags.
 
 Output JSON only:
