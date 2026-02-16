@@ -60,82 +60,96 @@ def text_block(type, text):
 
 import re
 
-def markdown_to_notion_blocks(path):
 
+def parse_lines(lines):
     children = []
-
     in_code = False
     code_lines = []
     code_lang = "plain text"
 
-    with open(path, "r", encoding="utf-8") as f:
-        for raw in f:
-            line = raw.rstrip()
+    for raw in lines:
+        line = raw.rstrip()
 
-            # =====================
-            # CODE BLOCK TOGGLE
-            # =====================
-            if line.startswith("```"):
-                if not in_code:
-                    in_code = True
-                    code_lang = line.replace("```", "").strip() or "plain text"
-                    code_lines = []
-                else:
-                    children.append(code_block("\n".join(code_lines), code_lang))
-                    in_code = False
-                continue
+        # =====================
+        # CODE BLOCK TOGGLE
+        # =====================
+        if line.startswith("```"):
+            if not in_code:
+                in_code = True
+                code_lang = line.replace("```", "").strip() or "plain text"
+                code_lines = []
+            else:
+                children.append(code_block("\n".join(code_lines), code_lang))
+                in_code = False
+            continue
 
-            if in_code:
-                code_lines.append(line)
-                continue
+        if in_code:
+            code_lines.append(line)
+            continue
 
-            # =====================
-            # HEADINGS
-            # =====================
-            if line.startswith("### "):
-                children.append(block("heading_3", line[4:]))
-                continue
+        # =====================
+        # HEADINGS
+        # =====================
+        if line.startswith("### "):
+            children.append(block("heading_3", line[4:]))
+            continue
 
-            if line.startswith("## "):
-                children.append(block("heading_2", line[3:]))
-                continue
+        if line.startswith("## "):
+            children.append(block("heading_2", line[3:]))
+            continue
 
-            if line.startswith("# "):
-                children.append(block("heading_1", line[2:]))
-                continue
+        if line.startswith("# "):
+            children.append(block("heading_1", line[2:]))
+            continue
 
-            # =====================
-            # BULLET LIST
-            # =====================
-            if line.startswith("- ") or line.startswith("*"):
-                children.append(block("bulleted_list_item", line[2:]))
-                continue
+        # =====================
+        # BULLET LIST
+        # =====================
+        if line.startswith("- ") or line.startswith("*"):
+            children.append(block("bulleted_list_item", line[2:]))
+            continue
 
-            # =====================
-            # NUMBERED LIST
-            # =====================
-            if re.match(r"\d+\.\s", line):
-                text = re.sub(r"^\d+\.\s", "", line)
-                children.append(block("numbered_list_item", text))
-                continue
+        # =====================
+        # NUMBERED LIST
+        # =====================
+        if re.match(r"\d+\.\s", line):
+            text = re.sub(r"^\d+\.\s", "", line)
+            children.append(block("numbered_list_item", text))
+            continue
 
-            # =====================
-            # QUOTE
-            # =====================
-            if line.startswith("> "):
-                children.append(block("quote", line[2:]))
-                continue
+        # =====================
+        # QUOTE
+        # =====================
+        if line.startswith("> "):
+            children.append(block("quote", line[2:]))
+            continue
 
-            if line.strip() == "---":
-                children.append(divider())
-                continue
+        if line.strip() == "---":
+            children.append(divider())
+            continue
 
-            # =====================
-            # PARAGRAPH
-            # =====================
-            if line.strip():
-                children.append(block("paragraph", line.strip()))
+        # =====================
+        # PARAGRAPH
+        # =====================
+        if line.strip():
+            children.append(block("paragraph", line.strip()))
 
     return children
+
+
+def markdown_to_notion_blocks(path=None, content=None):
+    if content:
+        if isinstance(content, str):
+            lines = content.splitlines()
+        else:
+            lines = content
+    elif path:
+        with open(path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+    else:
+        raise ValueError("Either path or content must be provided")
+        
+    return parse_lines(lines)
+
 
 
