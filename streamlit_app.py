@@ -21,265 +21,239 @@ sys.path.append(os.getcwd())
 # Page config
 st.set_page_config(
     page_title="Smart Note Taker",
-    page_icon="🤖",
-    layout="centered"
+    page_icon="✨",
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
-# Custom CSS for better UI
+# Custom CSS for Premium UI
 st.markdown("""
 <style>
-    .main-header {
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 1rem;
-    }
-    .status-badge {
-        display: inline-block;
-        padding: 0.25rem 0.75rem;
+    /* Global Cleanliness */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    
+    /* Modern Text Area */
+    .stTextArea textarea {
         border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        padding: 1rem;
+        font-size: 1.1rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s;
+        min-height: 120px;
+    }
+    .stTextArea textarea:focus {
+        border-color: #6366f1;
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    /* Action Bar Styling */
+    .stButton button {
+        border-radius: 10px;
+        font-weight: 600;
+        padding: 0.5rem 1rem;
+        transition: transform 0.1s;
+    }
+    .stButton button:hover {
+        transform: translateY(-1px);
+    }
+    
+    /* Header Styling */
+    .hero-header {
+        font-size: 2.5rem;
+        font-weight: 800;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.02em;
+    }
+    
+    /* Result Card */
+    .result-card {
+        background: white;
+        border-radius: 16px;
+        padding: 1.5rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #f3f4f6;
+        margin-top: 1rem;
+    }
+    
+    /* Status Badge */
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
         font-size: 0.875rem;
         font-weight: 600;
-        margin: 0.25rem;
+        margin-bottom: 0.5rem;
     }
-    .badge-task { background-color: #fef3c7; color: #92400e; }
-    .badge-idea { background-color: #ddd6fe; color: #5b21b6; }
-    .badge-note { background-color: #dbeafe; color: #1e40af; }
+    .badge-task { background-color: #fffbeb; color: #b45309; border: 1px solid #fcd34d; }
+    .badge-idea { background-color: #f5f3ff; color: #7c3aed; border: 1px solid #ddd6fe; }
+    .badge-note { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-header">🤖 Smart Note Taker</div>', unsafe_allow_html=True)
-st.markdown("**AI-powered note classification** • Notion integration • LangGraph workflow")
+# ---------------------------------------------------------
+# HEADER
+# ---------------------------------------------------------
+st.markdown('<div class="hero-header">Smart Writer AI</div>', unsafe_allow_html=True)
+st.caption("Auto-organize your thoughts into Notion with voice or text.")
 
-# ==========================================
-# SIDEBAR
-# ==========================================
-with st.sidebar:
-    st.header("⚙️ Settings")
-    
-    # Debug info
-    if st.checkbox("Show Debug Info"):
-        st.write(f"✅ Notion Key: {'✓' if os.getenv('NOTION_API_KEY') else '✗'}")
-        st.write(f"✅ Notion DB: {'✓' if os.getenv('NOTION_PAGE_ID') else '✗'}")
-        st.write(f"✅ Google API: {'✓' if os.getenv('GOOGLE_API_KEY') else '✗'}")
-    
-    st.divider()
-    
-    # VOICE INPUT SECTION
-    st.markdown("### 🎙️ Voice Input")
-    
-    # 1. Mic Recorder
-    st.write("Click to record:")
-    audio = mic_recorder(
-        start_prompt="🎤 Start Recording",
-        stop_prompt="⏹️ Stop Recording",
-        key='recorder'
-    )
-    
-    # 2. File Upload
-    uploaded_audio = st.file_uploader("Or upload audio", type=['wav', 'mp3', 'm4a'])
-    
-    # Process Audio
-    if audio or uploaded_audio:
-        with st.spinner("🎧 Transcribing audio..."):
-            try:
-                if audio:
-                    audio_bytes = audio['bytes']
-                else:
-                    audio_bytes = uploaded_audio.read()
-                
-                # Transcribe
-                transcribed_text = transcribe(audio_bytes)
-                if transcribed_text:
-                    st.session_state.main_input = transcribed_text
-                    st.success("✅ Transcription complete!")
-                
-            except Exception as e:
-                st.error(f"Transcription failed: {str(e)}")
-
-    st.divider()
-    
-    st.markdown("""
-    ### 🔄 Workflow
-    
-    **Node 1: Content Formatter**
-    - Classifies input (Note/Idea/Task)
-    - Generates title
-    - Formats as markdown
-    - Extracts tags
-    
-    **Node 2: Property Creator**
-    - Generates Notion properties
-    - Determines status
-    - Adds metadata
-    
-    **Node 3: Notion Updater**
-    - Saves to Notion
-    - Handles deduplication
-    """)
-    
-    st.divider()
-    
-    st.markdown("""
-    ### 📚 Examples
-    
-    **Task:**
-    "Remind me to submit the report by Friday at 5 PM"
-    
-    **Idea:**
-    "App concept: Real-time collaboration tool for remote teams"
-    
-    **Note:**
-    "Meeting notes: API is slow, need caching"
-    """)
-
-# ==========================================
-# INITIALIZE AGENT
-# ==========================================
+# ---------------------------------------------------------
+# INITIALIZE AGENT (Silent)
+# ---------------------------------------------------------
 if 'agent' not in st.session_state:
-    with st.spinner("🤖 Initializing AI Agent..."):
-        try:
-            st.session_state.agent = NoteAgent()
-            st.session_state.notion_client = NotionClient()
-            st.toast("✅ Agent ready!", icon="🤖")
-        except Exception as e:
-            st.error(f"❌ Failed to initialize: {e}")
-            st.stop()
+    try:
+        st.session_state.agent = NoteAgent()
+        st.session_state.notion_client = NotionClient()
+    except Exception as e:
+        st.error(f"⚠️ Initialization Error: {e}")
+        st.stop()
 
-# ==========================================
-# MAIN INPUT
-# ==========================================
-st.markdown("### 📝 Enter your thought, note, or task")
-
-# Initialize session state for input
+# Initialize input state
 if 'main_input' not in st.session_state:
     st.session_state.main_input = ""
 
-input_text = st.text_area(
-    label="Input",
-    key="main_input",
-    height=150,
-    placeholder="Type here or use voice recording from sidebar...",
-    label_visibility="collapsed"
-)
+# ---------------------------------------------------------
+# UNIFIED INPUT GRID
+# ---------------------------------------------------------
 
-col1, col2 = st.columns([3, 1])
-with col1:
-    process_btn = st.button("🚀 Process & Save", type="primary", use_container_width=True)
-with col2:
-    clear_btn = st.button("🗑️ Clear", use_container_width=True)
+# 1. Create a container for the text input (to be filled later)
+# This allows us to process audio and update state BEFORE rendering the text area
+input_container = st.container()
 
-if clear_btn:
-    st.session_state.main_input = ""
-    st.rerun()
+# 2. Control Bar (Grid) - Rendered below via code order, but logic runs first
+col_mic, col_process, col_clear = st.columns([1, 2, 0.5])
 
-# ==========================================
-# PROCESSING
-# ==========================================
-if process_btn and input_text:
-    
-    # Progress tracking
-    progress_bar = st.progress(0)
-    status_text = st.empty()
-    
-    try:
-        # Step 1: AI Processing
-        status_text.text("🤖 AI Agent analyzing...")
-        progress_bar.progress(20)
+with col_mic:
+    # Mic returns audio immediately
+    audio = mic_recorder(
+        start_prompt="🎤 Record",
+        stop_prompt="⏹️ Stop",
+        key='recorder'
+    )
+
+with col_process:
+    # Primary Action
+    process_btn = st.button("✨ Save to Notion", type="primary", use_container_width=True)
+
+with col_clear:
+    # Secondary Action
+    if st.button("🗑️", help="Clear Input", use_container_width=True):
+        st.session_state.main_input = ""
+        st.rerun()
+
+# ---------------------------------------------------------
+# LOGIC: HANDLE VOICE
+# ---------------------------------------------------------
+if audio:
+    with st.spinner("🎧 Transcribing..."):
+        try:
+            text = transcribe(audio['bytes'])
+            if text:
+                st.session_state.main_input = text
+                # We don't need st.rerun() here because we haven't rendered the text_area yet!
+                # The container below will pick up the new state immediately.
+        except Exception as e:
+            st.error(f"❌ Audio Error: {e}")
+
+# 3. Render Text Input inside the container (NOW safe to use state)
+with input_container:
+    input_text = st.text_area(
+        "What's on your mind?",
+        key="main_input",
+        height=140,
+        placeholder="Type here or use the microphone below...",
+        label_visibility="collapsed"
+    )
+if process_btn:
+    if not input_text:
+        st.warning("Please enter some text first!")
+    else:
+        # Minimal Progress UI
+        progress_bar = st.progress(0)
+        status = st.empty()
         
-        result = st.session_state.agent.process(input_text)
-        
-        if result.get("error"):
-            st.error(f"❌ Processing error: {result['error']}")
-            st.stop()
-        
-        progress_bar.progress(60)
-        
-        # Show AI Analysis
-        status_text.text("✅ AI Analysis complete")
-        
-        with st.expander("🔍 AI Analysis Results", expanded=True):
-            # Category badge
+        try:
+            # Step 1: Analyze
+            status.markdown("🧠 **AI is thinking...**")
+            progress_bar.progress(30)
+            
+            result = st.session_state.agent.process(input_text)
+            
+            if result.get("error"):
+                st.error(f"❌ Error: {result['error']}")
+                st.stop()
+            
+            progress_bar.progress(60)
+            
+            # Step 2: Save to Notion
+            status.markdown("💾 **Syncing to Notion...**")
+            progress_bar.progress(80)
+            
+            # Convert & Save
+            children = markdown_to_notion_blocks(content=result['formatted_content'])
+            category = result['category']
+            target_date = result.get('target_date')
+            
+            # Notion Save Logic
+            saved_msg = ""
+            if category == "Note":
+                page_title = f"Daily Note - {target_date}"
+                existing_page = st.session_state.notion_client.find_page_by_title(page_title)
+                if existing_page:
+                    st.session_state.notion_client.append_blocks(existing_page["id"], children)
+                    saved_msg = f"Appended to **{page_title}**"
+                else:
+                    st.session_state.notion_client.add_note(result['properties'], children)
+                    saved_msg = f"Created **{page_title}**"
+                    
+            elif category == "Task":
+                page_title = f"Tasks - {target_date}"
+                existing_page = st.session_state.notion_client.find_page_by_title(page_title)
+                if existing_page:
+                    st.session_state.notion_client.append_blocks(existing_page["id"], children)
+                    saved_msg = f"Appended to **{page_title}**"
+                else:
+                    props = result['properties'].copy()
+                    props["Name"] = {"title": [{"text": {"content": page_title}}]}
+                    st.session_state.notion_client.add_note(props, children)
+                    saved_msg = f"Created task list **{page_title}**"
+            
+            else: # Idea
+                st.session_state.notion_client.add_note(result['properties'], children)
+                saved_msg = f"Created **{result['title']}**"
+            
+            progress_bar.progress(100)
+            status.empty()
+            progress_bar.empty()
+            
+            # ---------------------------------------------------------
+            # RESULT CARD
+            # ---------------------------------------------------------
+            st.balloons()
+            
             badge_class = f"badge-{result['category'].lower()}"
+            
             st.markdown(f"""
-            <div>
-                <span class="status-badge {badge_class}">{result['category']}</span>
-                <span class="status-badge" style="background-color: #f3f4f6; color: #374151;">{result['status']}</span>
+            <div class="result-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                    <div class="status-badge {badge_class}">{result['category']}</div>
+                    <div style="color: #6b7280; font-size: 0.9rem;">{target_date}</div>
+                </div>
+                <h3 style="margin: 0 0 0.5rem 0; color: #111827;">{result['title']}</h3>
+                <div style="font-size: 0.95rem; color: #374151; line-height: 1.5;">
+                    ✅ {saved_msg}
+                </div>
             </div>
             """, unsafe_allow_html=True)
             
-            st.markdown(f"**Title:** {result['title']}")
-            st.markdown(f"**Target Date:** {result.get('target_date', 'N/A')}")
-            st.markdown(f"**Tags:** {', '.join(result['tags'])}")
-            
-            st.markdown("**Formatted Content:**")
-            st.markdown(result['formatted_content'])
-        
-        # Step 2: Save to Notion
-        status_text.text("💾 Saving to Notion...")
-        progress_bar.progress(80)
-        
-        # Convert markdown to Notion blocks
-        children = markdown_to_notion_blocks(content=result['formatted_content'])
-        
-        # 3. Execution Logic
-        category = result['category']
-        target_date = result.get('target_date')
-        
-        # CASE 1: Daily Note (Append)
-        if category == "Note":
-            page_title = f"Daily Note - {target_date}"
-            existing_page = st.session_state.notion_client.find_page_by_title(page_title)
-            
-            if existing_page:
-                st.session_state.notion_client.append_blocks(existing_page["id"], children)
-                st.success(f"✅ Appended to **{page_title}**")
-            else:
-                st.session_state.notion_client.add_note(result['properties'], children)
-                st.success(f"✅ Created **{page_title}**")
-                
-        # CASE 2: Tasks (Group by Date)
-        elif category == "Task":
-            page_title = f"Tasks - {target_date}"
-            existing_page = st.session_state.notion_client.find_page_by_title(page_title)
-            
-            if existing_page:
-                # Append to existing daily task page
-                st.session_state.notion_client.append_blocks(existing_page["id"], children)
-                st.success(f"✅ Appended to **{page_title}**")
-            else:
-                # Create specific properties for the Container Page
-                task_page_props = result['properties'].copy()
-                task_page_props["Name"] = {"title": [{"text": {"content": page_title}}]}
-                
-                st.session_state.notion_client.add_note(task_page_props, children)
-                st.success(f"✅ Created new task list: **{page_title}**")
-        
-        # CASE 3: Ideas (Individual Pages)
-        else:
-            st.session_state.notion_client.add_note(result['properties'], children)
-            st.success(f"✅ Created **{result['title']}** as {result['category']}")
-        
-        progress_bar.progress(100)
-        status_text.text("✅ Complete!")
-        
-        st.balloons()
-        
-    except Exception as e:
-        st.error(f"❌ Error: {e}")
-        st.exception(e)
-    
-    finally:
-        progress_bar.empty()
-        status_text.empty()
+            with st.expander("Show Details"):
+                st.markdown(result['formatted_content'])
 
-# ==========================================
-# FOOTER
-# ==========================================
-st.divider()
-st.markdown("""
-<div style="text-align: center; color: #6b7280; font-size: 0.875rem;">
-    Built with LangGraph • Notion API • Gemini Flash<br>
-    Fast MVP for Smart Note Taking
-</div>
-""", unsafe_allow_html=True)
+        except Exception as e:
+            st.error(f"Something went wrong: {e}")
