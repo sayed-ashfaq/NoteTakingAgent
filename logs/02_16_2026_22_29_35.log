@@ -1,0 +1,2 @@
+{"timestamp": "2026-02-16T16:59:36.197511Z", "level": "info", "event": "Initializing NoteAgent with LangGraph"}
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"

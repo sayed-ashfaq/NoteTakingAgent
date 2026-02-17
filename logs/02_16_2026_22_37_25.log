@@ -1,0 +1,9 @@
+{"timestamp": "2026-02-16T17:07:27.857484Z", "level": "info", "event": "Initializing NoteAgent with LangGraph"}
+{"timestamp": "2026-02-16T17:07:40.090534Z", "level": "info", "event": "Processing input: Tomorrow, I need to update my HR manager that my friend is going to be interviewed.\n..."}
+{"timestamp": "2026-02-16T17:07:40.096357Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T17:07:47.351318Z", "level": "info", "event": "Node 1 complete: Task - Update HR Manager (2026-02-17)"}
+{"timestamp": "2026-02-16T17:07:47.355490Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T17:07:48.751268Z", "level": "info", "event": "Node 2 complete: Status=To Do, Tags=['HR', 'Task', 'Interview']"}
+{"timestamp": "2026-02-16T17:07:48.754422Z", "level": "info", "event": "Processing complete: Task - Update HR Manager"}

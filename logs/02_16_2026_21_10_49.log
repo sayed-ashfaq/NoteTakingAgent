@@ -1,0 +1,21 @@
+{"timestamp": "2026-02-16T15:40:50.724541Z", "level": "info", "event": "Initializing NoteAgent with LangGraph"}
+{"timestamp": "2026-02-16T15:41:42.674525Z", "level": "info", "event": "Processing input: Remind me to submit the quarterly report by Friday at 5 PM. Need to include Q4 metrics and team feed..."}
+{"timestamp": "2026-02-16T15:41:42.680855Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:41:48.153519Z", "level": "error", "event": "Node 1 failed: Error calling model 'gemini-3-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:41:48.155344Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:41:49.059174Z", "level": "error", "event": "Node 2 failed: Error calling model 'gemini-3-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:41:49.059978Z", "level": "error", "event": "Processing failed: PropertyCreator error: Error calling model 'gemini-3-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:43:48.845418Z", "level": "info", "event": "Processing input: Remind me to submit the quarterly report by Friday at 5 PM. Need to include Q4 metrics and team feed..."}
+{"timestamp": "2026-02-16T15:43:48.848789Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:43:52.236435Z", "level": "error", "event": "Node 1 failed: Error calling model 'gemini-3-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:43:52.240705Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:43:54.067336Z", "level": "error", "event": "Node 2 failed: Error calling model 'gemini-3-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:43:54.068464Z", "level": "error", "event": "Processing failed: PropertyCreator error: Error calling model 'gemini-3-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}

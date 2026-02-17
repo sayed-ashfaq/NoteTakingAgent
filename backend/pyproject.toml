@@ -1,0 +1,27 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.129.0",
+    "httpx>=0.28.1",
+    "langchain>=1.2.10",
+    "langchain-google-genai>=4.2.0",
+    "langchain-openai>=1.1.9",
+    "langgraph>=1.0.8",
+    "openai>=2.21.0",
+    "passlib[bcrypt]>=1.7.4",
+    "pydantic>=2.12.5",
+    "pydantic-settings>=2.13.0",
+    "pyjwt[crypto]>=2.11.0",
+    "python-dotenv>=1.2.1",
+    "python-multipart>=0.0.22",
+    "requests>=2.32.5",
+    "sqlmodel>=0.0.34",
+    "streamlit>=1.54.0",
+    "streamlit-mic-recorder>=0.0.8",
+    "structlog>=25.5.0",
+    "uvicorn>=0.41.0",
+]

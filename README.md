@@ -1,57 +1,56 @@
-# Smart Note taking AI agent
 
-An agent that can activate on my voice command, Take notes of whatever i say and segregate them and store them in the designated places.
+# Smart Note Taker API 🧠
 
-Here's the brief: 
-For storing data: Notion
-AI Agent: Langchain
+A production-ready FastAPI backend for the Smart Note Taking Agent. Features AI-powered classification (Gemini/OpenAI/Ollama), Notion integration, and Clerk authentication.
 
-- I have to create and append data accordingly
-- Primary focus to build for mobile
+## Features
+- **FastAPI Architecture**: Modular, scalable, and async.
+- **AI Processing**: Uses LangGraph to classify notes, tasks, and ideas.
+- **Voice Support**: Integrated OpenAI Whisper for audio transcription.
+- **Authentication**: Secure Clerk.dev integration with JWKS verification.
+- **Database**: SQLModel + SQLite for efficient local storage.
+- **Notion Sync**: Automatically organizes content into your Notion workspace.
 
-Tech Stack:
-- Langchain
-- Notion
-- VAD
-- Langgraph
+## Setup
 
+1. **Install Dependencies**
+   ```bash
+   uv sync
+   ```
 
-## First step
-- Connecting notion with the python so that it can read, write and update the data.
+2. **Environment Variables**
+   Ensure your `.env` file has:
+   ```env
+   # API Keys
+   OPENAI_API_KEY=sk-...
+   GOOGLE_API_KEY=...
+   NOTION_API_KEY=secret_...
+   NOTION_PAGE_ID=...
+   
+   # Clerk Auth
+   CLERK_SECRET_KEY=sk_...
+   CLERK_PUBLISHABLE_KEY=pk_...
+   CLERK_ISSUER=https://<your-domain>.clerk.accounts.dev
+   ```
 
-Below is a simple, focused **README.md** you can keep in your project folder.
-It’s designed to stop you from drifting into “agent chaos” and keep you on the correct journey.
+3. **Run the Server**
+   ```bash
+   uv run uvicorn app.main:app --reload
+   ```
 
----
+## API Documentation
+Once running, visit:
+- **Swagger UI**: [http://localhost:8000/docs](http://localhost:8000/docs)
+- **ReDoc**: [http://localhost:8000/redoc](http://localhost:8000/redoc)
 
-
-# Notion Notes MVP (Python)
-
-A minimal foundation project:
-
-**AI Agent → Notion API → Store Notes**
-
-This is NOT a full AI agent yet.  
-This is Step 0: reliable note storage.
-
----
-
-## Goal
-
-Build a simple pipeline:
-
-- Capture a note
-- Classify using AI agent (Idea / Task / Note)
-- Create properties
-- Format content 
-- Save it into one Notion database
-    - Append if page is existing like ideas, and tasks
-    - Create new page and add - For notes
-
-Once this works, we can later add:
-
-- Voice input (Whisper)
-- Auto-classification (LLM)
-- FastAPI backend (multi-user)
-
----
+## Project Structure
+```text
+app/
+├── api/            # Route handlers
+├── core/           # Config & Security
+├── db/             # Database connection
+├── models/         # SQLModel database schemas
+├── schemas/        # Pydantic API schemas
+├── services/       # Business logic (LLM, Notion, Voice)
+└── utils/          # Helper functions
+```

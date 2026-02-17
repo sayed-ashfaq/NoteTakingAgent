@@ -1,0 +1,22 @@
+{"timestamp": "2026-02-16T16:44:11.627147Z", "level": "info", "event": "Initializing NoteAgent with LangGraph"}
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:45:09.333199Z", "level": "info", "event": "Processing input: To create a model that includes NLP machine learning\n..."}
+{"timestamp": "2026-02-16T16:45:09.352172Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:45:13.860088Z", "level": "info", "event": "Node 1 complete: Idea - NLP Machine Learning Model (2026-02-16)"}
+{"timestamp": "2026-02-16T16:45:13.863297Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:45:15.139205Z", "level": "info", "event": "Node 2 complete: Status=Draft, Tags=['Idea', 'NLP', 'Model', 'Research', 'Machine Learning']"}
+{"timestamp": "2026-02-16T16:45:15.140295Z", "level": "info", "event": "Processing complete: Idea - NLP Machine Learning Model"}
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:46:12.738438Z", "level": "info", "event": "Processing input: tomorrow I need to create a model that can detect the names from my data\n..."}
+{"timestamp": "2026-02-16T16:46:12.747261Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:46:14.780533Z", "level": "info", "event": "Node 1 complete: Task - Create Name Detection Model (2026-02-17)"}
+{"timestamp": "2026-02-16T16:46:14.782820Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:46:16.686659Z", "level": "info", "event": "Node 2 complete: Status=To Do, Tags=['task', 'Task', 'data', 'model', 'name detection']"}
+{"timestamp": "2026-02-16T16:46:16.687907Z", "level": "info", "event": "Processing complete: Task - Create Name Detection Model"}

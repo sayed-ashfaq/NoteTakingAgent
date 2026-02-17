@@ -1,0 +1,21 @@
+{"timestamp": "2026-02-16T17:02:13.023774Z", "level": "info", "event": "Initializing NoteAgent with LangGraph"}
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T17:02:48.838721Z", "level": "info", "event": "Processing input: Tomorrow, I need to update my HR manager that my friend is going to be interviewed.\n..."}
+{"timestamp": "2026-02-16T17:02:48.849728Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T17:02:52.745931Z", "level": "info", "event": "Node 1 complete: Task - Update HR Manager (2026-02-17)"}
+{"timestamp": "2026-02-16T17:02:52.748498Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T17:02:54.054867Z", "level": "info", "event": "Node 2 complete: Status=To Do, Tags=['Task', 'HR', 'interview', 'update']"}
+{"timestamp": "2026-02-16T17:02:54.055734Z", "level": "info", "event": "Processing complete: Task - Update HR Manager"}
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T17:03:56.894560Z", "level": "info", "event": "Processing input: Tomorrow, I need to update my HR manager that my friend is going to be interviewed.\n..."}
+{"timestamp": "2026-02-16T17:03:56.898671Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T17:03:59.281547Z", "level": "info", "event": "Node 1 complete: Task - Update HR Manager (2026-02-17)"}
+{"timestamp": "2026-02-16T17:03:59.283859Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T17:04:01.266297Z", "level": "info", "event": "Node 2 complete: Status=To Do, Tags=['Task', 'HR', 'interview', 'update']"}
+{"timestamp": "2026-02-16T17:04:01.270139Z", "level": "info", "event": "Processing complete: Task - Update HR Manager"}

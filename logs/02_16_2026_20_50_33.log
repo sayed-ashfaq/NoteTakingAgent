@@ -1,0 +1,31 @@
+{"timestamp": "2026-02-16T15:20:33.876434Z", "level": "info", "event": "\ud83e\udd16 Initializing NoteAgent with LangGraph"}
+{"timestamp": "2026-02-16T15:20:33.888863Z", "level": "info", "event": "\ud83d\udcdd Processing input: Remind me to submit the quarterly report by Friday at 5 PM. Need to include Q4 metrics and team feed..."}
+{"timestamp": "2026-02-16T15:20:33.890364Z", "level": "info", "event": "\ud83d\udd04 Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:34.798980Z", "level": "error", "event": "\u274c Node 1 failed: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:34.813625Z", "level": "info", "event": "\ud83d\udd04 Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:35.669938Z", "level": "error", "event": "\u274c Node 2 failed: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:35.670622Z", "level": "error", "event": "\u274c Processing failed: PropertyCreator error: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:35.670892Z", "level": "info", "event": "\ud83d\udcdd Processing input: App concept: 'Uber for Dog Walkers'. Features: Real-time GPS tracking, walker ratings, automatic sch..."}
+{"timestamp": "2026-02-16T15:20:35.671993Z", "level": "info", "event": "\ud83d\udd04 Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:36.728170Z", "level": "error", "event": "\u274c Node 1 failed: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:36.730103Z", "level": "info", "event": "\ud83d\udd04 Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:37.585666Z", "level": "error", "event": "\u274c Node 2 failed: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:37.586324Z", "level": "error", "event": "\u274c Processing failed: PropertyCreator error: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:37.586615Z", "level": "info", "event": "\ud83d\udcdd Processing input: Meeting Quick Notes:\n            - API response time is too slow (avg 500ms)\n            - Need to a..."}
+{"timestamp": "2026-02-16T15:20:37.587630Z", "level": "info", "event": "\ud83d\udd04 Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:38.434359Z", "level": "error", "event": "\u274c Node 1 failed: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:38.435206Z", "level": "info", "event": "\ud83d\udd04 Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:39.598785Z", "level": "error", "event": "\u274c Node 2 failed: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:39.599385Z", "level": "error", "event": "\u274c Processing failed: PropertyCreator error: Error calling model 'gemini-pro' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-pro is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}

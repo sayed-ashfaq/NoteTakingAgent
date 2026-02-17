@@ -1,0 +1,11 @@
+{"timestamp": "2026-02-16T15:18:24.062935Z", "level": "info", "event": "\ud83e\udd16 Initializing NoteAgent with LangGraph"}
+{"timestamp": "2026-02-16T15:18:24.078728Z", "level": "info", "event": "\ud83d\udcdd Processing input: \n    Meeting with design team:\n    - Need to redesign the login page\n    - John suggested adding soc..."}
+{"timestamp": "2026-02-16T15:18:24.082318Z", "level": "info", "event": "\ud83d\udd04 Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:18:25.457358Z", "level": "error", "event": "\u274c Node 1 failed: Error calling model 'gemini-2.0-flash-exp' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:18:25.459004Z", "level": "info", "event": "\ud83d\udd04 Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:18:26.507569Z", "level": "error", "event": "\u274c Node 2 failed: Error calling model 'gemini-2.0-flash-exp' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:18:26.508342Z", "level": "error", "event": "\u274c Processing failed: PropertyCreator error: Error calling model 'gemini-2.0-flash-exp' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-2.0-flash-exp is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}

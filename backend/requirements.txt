@@ -1,0 +1,35 @@
+
+# Core Dependencies
+fastapi
+uvicorn
+python-dotenv
+pydantic
+pydantic-settings
+python-multipart
+
+# Database
+sqlmodel
+
+# Auth & Security
+pyjwt[crypto]
+passlib[bcrypt]
+
+# LangChain & LangGraph
+langchain
+langchain-google-genai
+langchain-openai
+langgraph
+
+# Integrations
+httpx
+openai
+
+# Notion API
+requests
+
+# Logging
+structlog
+
+# Streamlit (Optional - if running old UI)
+streamlit
+streamlit-mic-recorder

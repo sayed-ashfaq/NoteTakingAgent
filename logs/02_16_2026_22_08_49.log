@@ -1,0 +1,11 @@
+{"timestamp": "2026-02-16T16:38:56.818858Z", "level": "info", "event": "Initializing NoteAgent with LangGraph"}
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+HTTP Request: POST https://api.openai.com/v1/audio/transcriptions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:39:46.225418Z", "level": "info", "event": "Processing input: I want to add a task where tomorrow I have an interview so I need to prepare a model for them\n..."}
+{"timestamp": "2026-02-16T16:39:46.256115Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:39:52.622326Z", "level": "info", "event": "Node 1 complete: Task - Prepare Model for Interview (2026-02-17)"}
+{"timestamp": "2026-02-16T16:39:52.624851Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T16:39:54.017174Z", "level": "info", "event": "Node 2 complete: Status=To Do, Tags=['Task', 'interview', 'preparation', 'urgent', 'task']"}
+{"timestamp": "2026-02-16T16:39:54.018240Z", "level": "info", "event": "Processing complete: Task - Prepare Model for Interview"}

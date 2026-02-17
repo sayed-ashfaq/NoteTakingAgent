@@ -1,0 +1,31 @@
+{"timestamp": "2026-02-16T15:20:07.657170Z", "level": "info", "event": "\ud83e\udd16 Initializing NoteAgent with LangGraph"}
+{"timestamp": "2026-02-16T15:20:07.669844Z", "level": "info", "event": "\ud83d\udcdd Processing input: Remind me to submit the quarterly report by Friday at 5 PM. Need to include Q4 metrics and team feed..."}
+{"timestamp": "2026-02-16T15:20:07.672092Z", "level": "info", "event": "\ud83d\udd04 Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:08.585970Z", "level": "error", "event": "\u274c Node 1 failed: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:08.591112Z", "level": "info", "event": "\ud83d\udd04 Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:09.698825Z", "level": "error", "event": "\u274c Node 2 failed: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:09.699407Z", "level": "error", "event": "\u274c Processing failed: PropertyCreator error: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:09.699570Z", "level": "info", "event": "\ud83d\udcdd Processing input: App concept: 'Uber for Dog Walkers'. Features: Real-time GPS tracking, walker ratings, automatic sch..."}
+{"timestamp": "2026-02-16T15:20:09.700503Z", "level": "info", "event": "\ud83d\udd04 Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:11.019918Z", "level": "error", "event": "\u274c Node 1 failed: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:11.021809Z", "level": "info", "event": "\ud83d\udd04 Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:11.831099Z", "level": "error", "event": "\u274c Node 2 failed: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:11.831835Z", "level": "error", "event": "\u274c Processing failed: PropertyCreator error: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:11.832387Z", "level": "info", "event": "\ud83d\udcdd Processing input: Meeting Quick Notes:\n            - API response time is too slow (avg 500ms)\n            - Need to a..."}
+{"timestamp": "2026-02-16T15:20:11.833588Z", "level": "info", "event": "\ud83d\udd04 Node 1: ContentFormatter started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:12.889873Z", "level": "error", "event": "\u274c Node 1 failed: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:12.890748Z", "level": "info", "event": "\ud83d\udd04 Node 2: PropertyCreator started"}
+AFC is enabled with max remote calls: 10.
+HTTP Request: POST https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent "HTTP/1.1 404 Not Found"
+{"timestamp": "2026-02-16T15:20:13.680221Z", "level": "error", "event": "\u274c Node 2 failed: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}
+{"timestamp": "2026-02-16T15:20:13.681243Z", "level": "error", "event": "\u274c Processing failed: PropertyCreator error: Error calling model 'gemini-1.5-flash' (NOT_FOUND): 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-1.5-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}"}

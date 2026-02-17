@@ -1,0 +1,9 @@
+{"timestamp": "2026-02-16T15:44:23.229603Z", "level": "info", "event": "Initializing NoteAgent with LangGraph"}
+{"timestamp": "2026-02-16T15:44:35.485333Z", "level": "info", "event": "Processing input: Remind me to submit the quarterly report by Friday at 5 PM. Need to include Q4 metrics and team feed..."}
+{"timestamp": "2026-02-16T15:44:35.489942Z", "level": "info", "event": "Node 1: ContentFormatter started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T15:44:43.409592Z", "level": "info", "event": "Node 1 complete: Category=Task, Title=Submit Quarterly Report by Friday"}
+{"timestamp": "2026-02-16T15:44:43.411600Z", "level": "info", "event": "Node 2: PropertyCreator started"}
+HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+{"timestamp": "2026-02-16T15:44:44.848011Z", "level": "info", "event": "Node 2 complete: Status=To Do, Tags=['report', 'metrics', 'team feedback', 'deadline', 'Q4', 'reminder']"}
+{"timestamp": "2026-02-16T15:44:44.849043Z", "level": "info", "event": "Processing complete: Task - Submit Quarterly Report by Friday"}
